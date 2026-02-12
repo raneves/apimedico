@@ -1,6 +1,7 @@
-package br.com.romulo.apimedico.response.medico;
+package br.com.romulo.apimedico.dominio.dto;
 
-import br.com.romulo.apimedico.models.Medico;
+import br.com.romulo.apimedico.dominio.entidade.Medico;
+import br.com.romulo.apimedico.dominio.enuns.Especialidade;
 
 public record DadosListagemMedico(Long id, String nome, String email, String crm, Especialidade especialidade) {
 

@@ -1,8 +1,8 @@
-package br.com.romulo.apimedico.models;
+package br.com.romulo.apimedico.dominio.entidade;
 
-import br.com.romulo.apimedico.response.medico.DadosAtualizacaoMedico;
-import br.com.romulo.apimedico.response.medico.DadosCadastroMedico;
-import br.com.romulo.apimedico.response.medico.Especialidade;
+import br.com.romulo.apimedico.dominio.dto.DadosAtualizacaoMedico;
+import br.com.romulo.apimedico.dominio.dto.DadosCadastroMedico;
+import br.com.romulo.apimedico.dominio.enuns.Especialidade;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

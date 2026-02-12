@@ -1,6 +1,5 @@
-package br.com.romulo.apimedico.response.medico;
+package br.com.romulo.apimedico.dominio.dto;
 
-import br.com.romulo.apimedico.response.endereco.DadosEndereco;
 import jakarta.validation.constraints.NotNull;
 
 public record DadosAtualizacaoMedico(

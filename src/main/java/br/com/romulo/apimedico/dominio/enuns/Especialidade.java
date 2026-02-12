@@ -1,4 +1,4 @@
-package br.com.romulo.apimedico.response.medico;
+package br.com.romulo.apimedico.dominio.enuns;
 
 public enum Especialidade {
 	ORTOPEDIA,

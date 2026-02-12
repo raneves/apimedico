@@ -1,4 +1,4 @@
-package br.com.romulo.apimedico.response.endereco;
+package br.com.romulo.apimedico.dominio.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

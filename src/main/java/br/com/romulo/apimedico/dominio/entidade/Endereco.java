@@ -1,6 +1,6 @@
-package br.com.romulo.apimedico.models;
+package br.com.romulo.apimedico.dominio.entidade;
 
-import br.com.romulo.apimedico.response.endereco.DadosEndereco;
+import br.com.romulo.apimedico.dominio.dto.DadosEndereco;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

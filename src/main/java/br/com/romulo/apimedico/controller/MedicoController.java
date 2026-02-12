@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.romulo.apimedico.models.Medico;
-import br.com.romulo.apimedico.repository.MedicoRepository;
-import br.com.romulo.apimedico.response.medico.DadosAtualizacaoMedico;
-import br.com.romulo.apimedico.response.medico.DadosCadastroMedico;
-import br.com.romulo.apimedico.response.medico.DadosDetalhamentoMedico;
-import br.com.romulo.apimedico.response.medico.DadosListagemMedico;
+import br.com.romulo.apimedico.dominio.dto.DadosAtualizacaoMedico;
+import br.com.romulo.apimedico.dominio.dto.DadosCadastroMedico;
+import br.com.romulo.apimedico.dominio.dto.DadosDetalhamentoMedico;
+import br.com.romulo.apimedico.dominio.dto.DadosListagemMedico;
+import br.com.romulo.apimedico.dominio.entidade.Medico;
+import br.com.romulo.apimedico.dominio.repository.MedicoRepository;
 import jakarta.validation.Valid;
 
 
@@ -32,10 +33,12 @@ public class MedicoController {
 	
 	 @PostMapping
 	 @Transactional
-     public ResponseEntity cadastrar(@RequestBody DadosCadastroMedico dados) {
-		 medicoRepository.save(new Medico(dados));
-		 return ResponseEntity.ok().build();
-
+     public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroMedico dados, UriComponentsBuilder uriBuilder) {
+		 var medico = new Medico(dados);
+		 medicoRepository.save(medico);
+		 var uri = uriBuilder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();
+		 
+		 return ResponseEntity.created(uri).body(new DadosDetalhamentoMedico(medico));
 	}
 	 
 //	@GetMapping
@@ -76,5 +79,12 @@ public class MedicoController {
 		var medico = medicoRepository.getReferenceById(id);
         medico.excluir();
         return ResponseEntity.noContent().build(); //204 no content
+	}
+	
+	
+	@GetMapping("/{id}")	
+	public ResponseEntity detalhar(@PathVariable Long id) {			
+		var medico = medicoRepository.getReferenceById(id);       
+        return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
 	}
 }

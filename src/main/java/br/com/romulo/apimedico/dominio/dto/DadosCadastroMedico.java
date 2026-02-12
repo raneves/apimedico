@@ -1,6 +1,6 @@
-package br.com.romulo.apimedico.response.medico;
+package br.com.romulo.apimedico.dominio.dto;
 
-import br.com.romulo.apimedico.response.endereco.DadosEndereco;
+import br.com.romulo.apimedico.dominio.enuns.Especialidade;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -17,7 +17,7 @@ public record DadosCadastroMedico(
         @NotBlank
         String telefone,
 
-        @NotBlank
+        @NotNull
         @Pattern(regexp = "\\d{4,6}")
         String crm,
         @NotNull
