@@ -10,13 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.romulo.apimedico.dominio.dto.DadosAutenticacao;
+import br.com.romulo.apimedico.dominio.entidade.Usuario;
+import br.com.romulo.apimedico.infra.security.DadosTokenJWT;
+import br.com.romulo.apimedico.infra.security.TokenService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/requisitar-token")
 public class AutenticacaoController {
 	@Autowired
     private AuthenticationManager manager;
+	
+	@Autowired
+	private TokenService tokenService;
 	
 	//para funcionar tem que criar um usuario e senha no banco de dados
 	//para demonstracao criei usuario: romulo, senha: 123456, no entanto
@@ -26,10 +32,12 @@ public class AutenticacaoController {
 	//$2a$10$Y50UaMFOxteibQEYLrwuHeehHYfcoafCopUazP12.rqB41bsolF5.
 	@PostMapping
 	public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados) {
-	    var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
-	    var authentication = manager.authenticate(token);
+		var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
+	    var authentication = manager.authenticate(authenticationToken);
 
-	    return ResponseEntity.ok().build();
+	    var tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
+
+	    return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
 	}
 	
 	
