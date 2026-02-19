@@ -9,11 +9,77 @@
     {
       "name": "Cadastro de medico",
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb211bG8iLCJpc3MiOiJBUEkgbWVkaWNvIiwiZXhwIjoxNzcxNTQ3NjAwfQ.iCIrJhU8ADhWAz0gAjtu6n9WAKZh_LbIdUBlK_-ExUE",
+              "type": "string"
+            }
+          ]
+        },
         "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n\"nome\": \"Romulo A. Neves\",\r\n\"email\": \"romulo.neves@mail.com\",\r\n\"crm\": \"654268\",\r\n\"telefone\":33333333,\r\n\"especialidade\": \"ORTOPEDIA\",\r\n\"endereco\": {\r\n    \"logradouro\": \"rua 1\",\r\n    \"bairro\": \"bairro\",\r\n    \"cep\": \"12345678\",\r\n    \"cidade\": \"Londrina\",\r\n    \"uf\": \"PR\",\r\n    \"numero\": \"1\",\r\n    \"complemento\": \"complemento\"\r\n    }\r\n}",
+          "raw": "{\r\n\"nome\": \"Maria de Almeida Neves\",\r\n\"email\": \"maria1.neves@mail.com\",\r\n\"crm\": \"684489\",\r\n\"telefone\":33333333,\r\n\"especialidade\": \"ORTOPEDIA\",\r\n\"endereco\": {\r\n    \"logradouro\": \"rua 1\",\r\n    \"bairro\": \"bairro\",\r\n    \"cep\": \"12345678\",\r\n    \"cidade\": \"Londrina\",\r\n    \"uf\": \"PR\",\r\n    \"numero\": \"1\",\r\n    \"complemento\": \"complemento\"\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/medicos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "medicos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Requisitar token",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"login\": \"romulo\",\r\n\"senha\": \"123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/requisitar-token",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "requisitar-token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Cadastro de medico dados invalidos",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"crm\": \"654268\",\r\n\"telefone\":33333333,\r\n\"especialidade\": \"ORTOPEDIA\",\r\n\"endereco\": {\r\n    \"logradouro\": \"rua 1\",\r\n    \"bairro\": \"bairro\",\r\n    \"cep\": \"12345678\",\r\n    \"cidade\": \"Londrina\",\r\n    \"uf\": \"PR\",\r\n    \"numero\": \"1\",\r\n    \"complemento\": \"complemento\"\r\n    }\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -37,6 +103,16 @@
     {
       "name": "Obter Medicos",
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb211bG8iLCJpc3MiOiJBUEkgbWVkaWNvIiwiZXhwIjoxNzcxNDY2Mjc0fQ.5D-hdJpXvfCuyYGRAAvVHITcO_cdT5szhdjeZ-Wi0gc",
+              "type": "string"
+            }
+          ]
+        },
         "method": "GET",
         "header": [],
         "url": {
@@ -54,12 +130,82 @@
       "response": []
     },
     {
-      "name": "Get Paginado",
+      "name": "Obter Medicos detalhado por id",
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb211bG8iLCJpc3MiOiJBUEkgbWVkaWNvIiwiZXhwIjoxNzcxNTQ3NjAwfQ.iCIrJhU8ADhWAz0gAjtu6n9WAKZh_LbIdUBlK_-ExUE",
+              "type": "string"
+            }
+          ]
+        },
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/medicos",
+          "raw": "http://localhost:8080/medicos/3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "medicos",
+            "3"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Obter Medicos detalhado por id nao cadastrado",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb211bG8iLCJpc3MiOiJBUEkgbWVkaWNvIiwiZXhwIjoxNzcxNTQ3NjAwfQ.iCIrJhU8ADhWAz0gAjtu6n9WAKZh_LbIdUBlK_-ExUE",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/medicos/3345658",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "medicos",
+            "3345658"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Paginado",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb211bG8iLCJpc3MiOiJBUEkgbWVkaWNvIiwiZXhwIjoxNzcxNTQ3NjAwfQ.iCIrJhU8ADhWAz0gAjtu6n9WAKZh_LbIdUBlK_-ExUE",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/medicos?size=1",
           "protocol": "http",
           "host": [
             "localhost"
@@ -67,6 +213,12 @@
           "port": "8080",
           "path": [
             "medicos"
+          ],
+          "query": [
+            {
+              "key": "size",
+              "value": "1"
+            }
           ]
         }
       },
@@ -79,7 +231,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "   {\r\n        \"id\": 1,\r\n        \"nome\": \"Nome teste\"\r\n   }",
+          "raw": "   {\r\n        \"id\": 3,\r\n        \"nome\": \"Romulo A. Neves\"\r\n   }",
           "options": {
             "raw": {
               "language": "json"
@@ -103,10 +255,20 @@
     {
       "name": "Excluir Medico",
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb211bG8iLCJpc3MiOiJBUEkgbWVkaWNvIiwiZXhwIjoxNzcxNTQ3NjAwfQ.iCIrJhU8ADhWAz0gAjtu6n9WAKZh_LbIdUBlK_-ExUE",
+              "type": "string"
+            }
+          ]
+        },
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/medicos/3",
+          "raw": "http://localhost:8080/medicos/5",
           "protocol": "http",
           "host": [
             "localhost"
@@ -114,7 +276,7 @@
           "port": "8080",
           "path": [
             "medicos",
-            "3"
+            "5"
           ]
         }
       },
